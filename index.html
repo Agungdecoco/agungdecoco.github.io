@@ -36,7 +36,7 @@
 
         <div class="text-center">
           <div class="flex justify-center mb-16">
-            <img src="assets/image/photo.jpg" alt="Image" class="w-64 h-64 rounded-full object-cover object-top"/>
+<!--             <img src="assets/image/photo.jpg" alt="Image" class="w-64 h-64 rounded-full object-cover object-top"/> -->
           </div>
 
           <h6
@@ -1018,8 +1018,8 @@
           Below is a summary of the places I studied
         </p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="bg-gray-50 px-8 py-10 rounded-md">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="cardContainer">
+          <div class="bg-gray-50 px-8 py-10 rounded-md draggable-card" draggable="true">
             <h4 class="font-medium text-gray-700 text-lg mb-4">2015 – 2018</h4>
 
             <p class="font-normal text-gray-500 text-md mb-4">
@@ -1040,7 +1040,7 @@
             </div>
           </div>
 
-          <div class="bg-gray-50 px-8 py-10 rounded-md">
+          <div class="bg-gray-50 px-8 py-10 rounded-md draggable-card" draggable="true">
             <h4 class="font-medium text-gray-700 text-lg mb-4">2019 – 2023</h4>
 
             <p class="font-normal text-gray-500 text-md mb-4">
@@ -1062,7 +1062,7 @@
             </div>
           </div>
 
-          <div class="bg-gray-50 px-8 py-10 rounded-md">
+          <div class="bg-gray-50 px-8 py-10 rounded-md draggable-card" draggable="true">
             <h4 class="font-medium text-gray-700 text-lg mb-4">2021</h4>
 
             <p class="font-normal text-gray-500 text-md mb-4">
@@ -1083,7 +1083,7 @@
             </div>
           </div>
 
-          <div class="bg-gray-50 px-8 py-10 rounded-md">
+          <div class="bg-gray-50 px-8 py-10 rounded-md draggable-card" draggable="true">
             <h4 class="font-medium text-gray-700 text-lg mb-4">2021</h4>
 
             <p class="font-normal text-gray-500 text-md mb-4">
@@ -1104,7 +1104,7 @@
             </div>
           </div>
 
-          <div class="bg-gray-50 px-8 py-10 rounded-md">
+          <div class="bg-gray-50 px-8 py-10 rounded-md draggable-card" draggable="true">
             <h4 class="font-medium text-gray-700 text-lg mb-4">2022</h4>
 
             <p class="font-normal text-gray-500 text-md mb-4">
@@ -1124,7 +1124,7 @@
             </div>
           </div>
 
-          <div class="bg-gray-50 px-8 py-10 rounded-md">
+          <div class="bg-gray-50 px-8 py-10 rounded-md draggable-card" draggable="true">
             <h4 class="font-medium text-gray-700 text-lg mb-4">2022</h4>
 
             <p class="font-normal text-gray-500 text-md mb-4">
@@ -1293,6 +1293,48 @@
 
     <script>
       feather.replace();
+    </script>
+    <script>
+      const cards = document.querySelectorAll('.draggable-card');
+      const container = document.getElementById('cardContainer');
+      let draggedItem = null;
+    
+      cards.forEach((card) => {
+        card.addEventListener('dragstart', (e) => {
+          draggedItem = card;
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 0);
+        });
+    
+        card.addEventListener('dragend', () => {
+          setTimeout(() => {
+            draggedItem.style.display = 'block';
+            draggedItem = null;
+          }, 0);
+        });
+    
+        card.addEventListener('dragover', (e) => {
+          e.preventDefault();
+        });
+    
+        card.addEventListener('dragenter', (e) => {
+          e.preventDefault();
+          card.style.border = '2px dashed #ccc';
+        });
+    
+        card.addEventListener('dragleave', () => {
+          card.style.border = 'none';
+        });
+    
+        card.addEventListener('drop', (e) => {
+          e.preventDefault();
+          card.style.border = 'none';
+          if (draggedItem !== card) {
+            container.insertBefore(draggedItem, card);
+          }
+        });
+      });
     </script>
   </body>
 </html>
