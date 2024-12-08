@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1, user-scalable=0" />
-    <title>Porto - Tailwind Template</title>
+    <title>Agung Susilo</title>
     <link rel="stylesheet" href="assets/css/tailwind.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -894,13 +894,13 @@
 
     <section class="py-10 md:py-16">
       <div class="container max-w-screen-xl mx-auto px-4">
-        <div class="flex flex-col lg:flex-row justify-between grid grid-cols-3">
-          <div class="mb-10 lg:mb-0">
+        <div class="flex flex-col lg:flex-row justify-between lg:grid lg:grid-cols-3">
+          <div class="mb-10 lg:mb-0 lg:text-left text-center">
             <h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">
               Portfolio
             </h1>
 
-            <p class="font-normal text-gray-500 text-xs md:text-base">
+            <p class="font-normal text-gray-500 text-xs md:text-base max-w-100 lg:pr-10">
               I have brought here my biggest and favorite works <br />
               as a professional.
             </p>
@@ -1011,11 +1011,11 @@
 
     <section class="py-10 md:py-16">
       <div class="container max-w-screen-xl mx-auto px-4">
-        <h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">
+        <h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5 lg:text-left text-center">
           Education
         </h1>
 
-        <p class="font-normal text-gray-500 text-xs md:text-base mb-20">
+        <p class="font-normal text-gray-500 text-xs md:text-base mb-20 lg:text-left text-center">
           Below is a summary of the places I studied
         </p>
 
@@ -1150,16 +1150,56 @@
 
     <section class="py-10 md:py-16">
       <div class="container max-w-screen-xl mx-auto px-4">
-        <h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5">
+        <h1 class="font-medium text-gray-700 text-3xl md:text-4xl mb-5 lg:text-left text-center">
           Experience
         </h1>
 
-        <p class="font-normal text-gray-500 text-xs md:text-base mb-20">
+        <p class="font-normal text-gray-500 text-xs md:text-base mb-20 lg:text-left text-center">
           Below is a summary of the places I studied
         </p>
 
         <div class="flex flex-col lg:flex-row justify-between">
-          <div class="space-y-8 md:space-y-16 mb-16 md:mb-0">
+          
+          <div class="space-y-8 md:space-y-16 mb-16 md:mb-0 lg:hidden block">
+
+            <div class="space-y-4">
+              <p class="font-semibold text-gray-600 text-base">
+                Maxiplus
+                <span class="font-normal text-gray-300">/ Surabaya</span>
+              </p>
+              <p class="font-normal text-gray-400 text-right">Graphic Designer <span>(2019-2019)</span></p>
+              <hr>
+            </div>
+
+            <div class="space-y-4">
+              <p class="font-semibold text-gray-600 text-base">
+                KOMINFO Jawa Timur
+                <span class="font-normal text-gray-300">/ Surabaya</span>
+              </p>
+              <p class="font-normal text-gray-400 text-right">Web Developer <span>(2022-2022)</span></p>
+              <hr>
+            </div>
+
+            <div class="space-y-4">
+              <p class="font-semibold text-gray-600 text-base">
+                Nayanika
+                <span class="font-normal text-gray-300">/ Surabaya</span>
+              </p>
+              <p class="font-normal text-gray-400 text-right">Web Developer <span>(2022-2023)</span></p>
+              <hr>
+            </div>
+
+            <div class="space-y-4">
+              <p class="font-semibold text-gray-600 text-base">
+                Bromindo Mekar Mitra
+                <span class="font-normal text-gray-300">/ Semarang</span>
+              </p>
+              <p class="font-normal text-gray-400 text-right">Fullstack Developer <span>(2023-Present)</span></p>
+              <hr>
+            </div>
+          </div>
+          
+          <div class="space-y-8 md:space-y-16 lg:block hidden mb-16 md:mb-0">
             <h6 class="font-medium text-gray-400 text-base uppercase">
               Company
             </h6>
@@ -1185,7 +1225,7 @@
             </p>
           </div>
 
-          <div class="space-y-8 md:space-y-16 mb-16 md:mb-0">
+          <div class="space-y-8 md:space-y-16 lg:block hidden mb-16 md:mb-0">
             <h6 class="font-medium text-gray-400 text-base uppercase">
               Position
             </h6>
@@ -1201,7 +1241,7 @@
             </p>
           </div>
 
-          <div class="space-y-8 md:space-y-16">
+          <div class="space-y-8 md:space-y-16 lg:block hidden">
             <h6 class="font-medium text-gray-400 text-base uppercase">Year</h6>
 
             <p class="font-normal text-gray-400 text-base">2019-2019</p>
