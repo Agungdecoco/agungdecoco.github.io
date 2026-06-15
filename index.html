@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
+    <!-- Prevent flash of wrong theme -->
+    <script>
+      (function(){var t=localStorage.getItem('portfolio-theme');document.documentElement.setAttribute('data-theme',t||'light');})();
+    </script>
     <script src="assets/js/anime.min.js"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
@@ -40,11 +44,19 @@
           <a href="#projects" class="nav-link">Projects</a>
           <a href="#skills" class="nav-link">Skills</a>
           <a
-            href="https://drive.google.com/file/d/1OfD4jG3Xtg_ToTyw2gPOWI2u2ikhufWM/view?usp=drive_link"
+            href="https://drive.google.com/file/d/1-yJlWVXlc71QjhtfjTHb_rlZSjT9HaoS/view?usp=sharing"
             class="btn btn-sm btn-secondary nav-cv"
             target="_blank"
             rel="noopener"
           >CV</a>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </button>
         </div>
       </div>
     </nav>
@@ -59,18 +71,19 @@
           </div>
 
           <h1 class="hero-title" id="heroTitle">
-            <span class="hero-word">Fullstack</span>
+            <span class="hero-word">Agung-Susilo</span>
             <span class="hero-word gradient-text">Developer</span>
           </h1>
 
           <p class="hero-subtitle" id="heroSubtitle">
-            Laravel · PHP · Flutter · 2+ Years Experience
+            Software Developer / Web / Mobile / +3 Years Experience
           </p>
 
           <p class="hero-description" id="heroDescription">
-            Building beautiful, functional web applications with modern technologies.
-            Specialized in full-stack development with a passion for clean code
-            and exceptional user experiences.
+            I help businesses ship clean, & scalable software.
+            3+ years delivering production-ready web &amp; mobile apps using
+            Laravel, Flutter, React, and Django.
+            From idea to launch, I write code that works today and scales tomorrow.
           </p>
 
           <div class="hero-cta" id="heroCta">
@@ -91,7 +104,7 @@
       <div class="container">
         <div class="stats-grid">
           <div class="stat-item" data-animate="stat">
-            <div class="stat-number"><span class="count-up" data-target="2">0</span><span class="stat-suffix">+</span></div>
+            <div class="stat-number"><span class="count-up" data-target="3">0</span><span class="stat-suffix">+</span></div>
             <div class="stat-label">Years Experience</div>
           </div>
           <div class="stat-item" data-animate="stat">
@@ -99,12 +112,8 @@
             <div class="stat-label">Projects Completed</div>
           </div>
           <div class="stat-item" data-animate="stat">
-            <div class="stat-number"><span class="count-up" data-target="8">0</span><span class="stat-suffix">+</span></div>
+            <div class="stat-number"><span class="count-up" data-target="15">0</span><span class="stat-suffix">+</span></div>
             <div class="stat-label">Technologies</div>
-          </div>
-          <div class="stat-item" data-animate="stat">
-            <div class="stat-number"><span class="count-up" data-target="100">0</span><span class="stat-suffix">%</span></div>
-            <div class="stat-label">Satisfaction</div>
           </div>
         </div>
       </div>
@@ -119,7 +128,9 @@
           <p class="section-subtitle">Showcase of my best work and technical contributions</p>
         </div>
 
-        <div class="projects-grid">
+        <!-- Carousel wrapper (active only on mobile via CSS) -->
+        <div class="projects-carousel-wrapper">
+          <div class="projects-grid" id="projectsGrid">
           <div class="project-card" data-animate="card">
             <div class="project-image" style="--card-hue:240">
               <i data-feather="book-open" class="project-icon"></i>
@@ -229,7 +240,19 @@
               </a>
             </div>
           </div>
-        </div>
+          </div><!-- /.projects-grid -->
+
+          <!-- Carousel controls (visible on mobile only) -->
+          <div class="carousel-controls" id="carouselControls" aria-hidden="true">
+            <button class="carousel-btn carousel-btn-prev" id="carouselPrev" aria-label="Previous project">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="carousel-dots" id="carouselDots"></div>
+            <button class="carousel-btn carousel-btn-next" id="carouselNext" aria-label="Next project">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div><!-- /.projects-carousel-wrapper -->
       </div>
     </section>
 
@@ -458,12 +481,27 @@
           <h2 class="section-title">Work Experience</h2>
           <p class="section-subtitle">Professional journey and roles I've held</p>
         </div>
-        <div class="timeline">
+        <div class="timeline-scroll-wrapper">
+          <div class="scroll-fade scroll-fade-top" id="timelineFadeTop"></div>
+
+          <div class="timeline-scroll-container" id="timelineScroll">
+            <div class="timeline">
           <div class="timeline-item" data-animate="card">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <div class="timeline-meta">
-                <span class="timeline-period">2023 – Present</span>
+                <span class="timeline-period">2025 – Present</span>
+                <span class="timeline-location">Surabaya</span>
+              </div>
+              <h3 class="timeline-role">Software Developer</h3>
+              <p class="timeline-company">Emdee Skin Clinic</p>
+            </div>
+          </div>
+          <div class="timeline-item" data-animate="card">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-meta">
+                <span class="timeline-period">2023 – 2025</span>
                 <span class="timeline-location">Semarang</span>
               </div>
               <h3 class="timeline-role">Fullstack Developer</h3>
@@ -503,7 +541,20 @@
               <p class="timeline-company">Maxiplus</p>
             </div>
           </div>
-        </div>
+            </div><!-- /.timeline -->
+          </div><!-- /.timeline-scroll-container -->
+
+          <div class="scroll-fade scroll-fade-bottom" id="timelineFadeBottom"></div>
+
+          <div class="scroll-indicator" id="scrollIndicator" aria-hidden="true">
+            <span class="scroll-indicator-label">Scroll to see more</span>
+            <div class="scroll-chevrons">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+        </div><!-- /.timeline-scroll-wrapper -->
       </div>
     </section>
 

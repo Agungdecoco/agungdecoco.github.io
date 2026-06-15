@@ -11,6 +11,21 @@
     return;
   }
 
+  // ── Theme toggle ──────────────────────────────────────────
+  (function initTheme() {
+    const root = document.documentElement;
+    const stored = localStorage.getItem('portfolio-theme');
+    root.setAttribute('data-theme', stored || 'light');
+
+    const btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('portfolio-theme', next);
+    });
+  })();
+
   // ── Feather icons ─────────────────────────────────────────
   if (typeof feather !== 'undefined') feather.replace();
 
@@ -318,6 +333,81 @@
     });
   }
 
+  // ── Projects carousel (mobile) ───────────────────────────
+  function initCarousel() {
+    const grid    = document.getElementById('projectsGrid');
+    const dotsEl  = document.getElementById('carouselDots');
+    const btnPrev = document.getElementById('carouselPrev');
+    const btnNext = document.getElementById('carouselNext');
+    if (!grid || !dotsEl) return;
+
+    const cards = Array.from(grid.querySelectorAll('.project-card'));
+    if (!cards.length) return;
+
+    // Build dots
+    cards.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Go to project ' + (i + 1));
+      d.addEventListener('click', () => scrollToCard(i));
+      dotsEl.appendChild(d);
+    });
+
+    function getCardWidth() {
+      return cards[0].offsetWidth + parseInt(getComputedStyle(grid).gap || '16');
+    }
+
+    function currentIndex() {
+      return Math.round(grid.scrollLeft / getCardWidth());
+    }
+
+    function scrollToCard(idx) {
+      grid.scrollTo({ left: idx * getCardWidth(), behavior: 'smooth' });
+    }
+
+    function updateState() {
+      const idx   = currentIndex();
+      const atEnd = idx >= cards.length - 1;
+
+      // dots
+      dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === idx);
+      });
+
+      // buttons
+      if (btnPrev) btnPrev.disabled = idx === 0;
+      if (btnNext) btnNext.disabled = atEnd;
+
+      // right-fade mask hint
+      grid.classList.toggle('at-end', atEnd);
+    }
+
+    if (btnPrev) btnPrev.addEventListener('click', () => scrollToCard(Math.max(0, currentIndex() - 1)));
+    if (btnNext) btnNext.addEventListener('click', () => scrollToCard(Math.min(cards.length - 1, currentIndex() + 1)));
+
+    grid.addEventListener('scroll', updateState, { passive: true });
+    updateState();
+
+    // Peek animation on first load (mobile only)
+    function peekHint() {
+      if (window.innerWidth > 768) return;
+      // only if user hasn't scrolled yet
+      if (grid.scrollLeft > 0) return;
+      const peek = Math.round(getCardWidth() * 0.18);
+      setTimeout(() => {
+        grid.style.scrollBehavior = 'auto';
+        grid.scrollLeft = peek;
+        setTimeout(() => {
+          grid.style.scrollBehavior = '';
+          grid.scrollTo({ left: 0, behavior: 'smooth' });
+        }, 420);
+      }, 1400);
+    }
+
+    peekHint();
+    window.addEventListener('resize', updateState, { passive: true });
+  }
+
   // ── Project card icon hover ───────────────────────────────
   function initProjectHover() {
     $$('.project-card').forEach(card => {
@@ -344,6 +434,30 @@
         });
       });
     });
+  }
+
+  // ── Timeline scroll indicator ─────────────────────────────
+  function initTimelineScroll() {
+    const el      = document.getElementById('timelineScroll');
+    const fadeTop = document.getElementById('timelineFadeTop');
+    const fadeBot = document.getElementById('timelineFadeBottom');
+    const ind     = document.getElementById('scrollIndicator');
+    if (!el) return;
+
+    function update() {
+      const atTop    = el.scrollTop < 12;
+      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 12;
+
+      if (fadeTop) fadeTop.style.opacity  = atTop ? '0' : '1';
+      if (fadeBot) fadeBot.style.opacity  = atBottom ? '0' : '1';
+      if (ind) {
+        if (atBottom) ind.classList.add('hidden');
+        else          ind.classList.remove('hidden');
+      }
+    }
+
+    el.addEventListener('scroll', update, { passive: true });
+    update();
   }
 
   // ── Footer entrance ───────────────────────────────────────
@@ -390,8 +504,10 @@
     const willAnimate = prepareInitialStates();
 
     animateOrbs();
+    initCarousel();
     initTechHover();
     initProjectHover();
+    initTimelineScroll();
     initFooter();
 
     if (willAnimate) {
