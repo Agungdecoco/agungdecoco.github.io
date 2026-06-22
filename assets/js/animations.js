@@ -460,6 +460,137 @@
     update();
   }
 
+  // ── Project Gallery Modal ─────────────────────────────
+  function initProjectModal() {
+    const IMAGES = {
+      'landing-page':           Array.from({ length: 7 }, (_, i) => `assets/image/project/landing-page_${i + 1}.png`),
+      'human-resource-system':  ['assets/image/project/human_resource_system_1.png', 'assets/image/project/human_resource_system_2.png'],
+      'guest-book':             ['assets/image/project/guest_book_web.png'],
+      'e-commerce':             ['assets/image/project/e_commerce.png'],
+      'loyalty-card':           ['assets/image/project/loyalty_card_system.png'],
+      'requisition-letter':     ['assets/image/project/requisition_letter.png'],
+      'vacancy-web':            ['assets/image/project/vacancy_web.png'],
+      'wedding-invitation':     ['assets/image/project/wedding_invitation_maker.png'],
+    };
+
+    const TITLES = {
+      'landing-page':           'Company Profile — Gallery',
+      'human-resource-system':  'Human Resource System — Gallery',
+      'guest-book':             'Guest Book System — Gallery',
+      'e-commerce':             'Simple E-Commerce — Gallery',
+      'loyalty-card':           'Loyalty Card System — Gallery',
+      'requisition-letter':     'Requisition Letter System — Gallery',
+      'vacancy-web':            'Vacancy Web — Gallery',
+      'wedding-invitation':     'Wedding Invitation Maker — Gallery',
+    };
+
+    const modal     = document.getElementById('projectModal');
+    const backdrop  = document.getElementById('modalBackdrop');
+    const track     = document.getElementById('modalTrack');
+    const dotsEl    = document.getElementById('modalDots');
+    const counter   = document.getElementById('modalCounter');
+    const titleEl   = document.getElementById('modalTitle');
+    const btnPrev   = document.getElementById('modalPrev');
+    const btnNext   = document.getElementById('modalNext');
+    const btnClose  = document.getElementById('modalClose');
+    if (!modal || !track) return;
+
+    let total   = 0;
+    let current = 0;
+
+    function build(key) {
+      const srcs = IMAGES[key] || [];
+      track.innerHTML = '';
+      dotsEl.innerHTML = '';
+      total   = srcs.length;
+      current = 0;
+
+      srcs.forEach((src, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'modal-slide';
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `${key} screenshot ${i + 1}`;
+        img.loading = i === 0 ? 'eager' : 'lazy';
+        slide.appendChild(img);
+        track.appendChild(slide);
+
+        const dot = document.createElement('button');
+        dot.className = 'modal-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Image ${i + 1}`);
+        dot.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(dot);
+      });
+
+      goTo(0, false);
+    }
+
+    function goTo(idx, animate) {
+      if (animate === false) track.style.transition = 'none';
+      else                   track.style.transition = '';
+
+      current = Math.max(0, Math.min(idx, total - 1));
+      track.style.transform = `translateX(-${current * 100}%)`;
+
+      if (animate === false) {
+        track.offsetHeight; // force reflow
+        track.style.transition = '';
+      }
+
+      dotsEl.querySelectorAll('.modal-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+
+      if (counter) counter.textContent = `${current + 1} / ${total}`;
+      if (btnPrev) btnPrev.disabled = current === 0;
+      if (btnNext) btnNext.disabled = current === total - 1;
+    }
+
+    function openModal(key) {
+      build(key);
+      if (titleEl) titleEl.textContent = TITLES[key] || 'Project Gallery';
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Triggers: card and link
+    document.querySelectorAll('[data-modal-trigger]').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        openModal(el.getAttribute('data-modal-trigger'));
+      });
+    });
+
+    if (btnClose)  btnClose.addEventListener('click', closeModal);
+    if (backdrop)  backdrop.addEventListener('click', closeModal);
+    if (btnPrev)   btnPrev.addEventListener('click', () => goTo(current - 1));
+    if (btnNext)   btnNext.addEventListener('click', () => goTo(current + 1));
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape')     closeModal();
+      if (e.key === 'ArrowLeft')  goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+
+    // Touch swipe
+    let touchStartX = 0;
+    track.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 48) goTo(current + (dx < 0 ? 1 : -1));
+    });
+  }
+
   // ── Footer entrance ───────────────────────────────────────
   function initFooter() {
     const footer = $('.footer');
@@ -507,6 +638,7 @@
     initCarousel();
     initTechHover();
     initProjectHover();
+    initProjectModal();
     initTimelineScroll();
     initFooter();
 

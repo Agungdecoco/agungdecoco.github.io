@@ -14,14 +14,14 @@
     <script>
       (function(){var t=localStorage.getItem('portfolio-theme');document.documentElement.setAttribute('data-theme',t||'light');})();
     </script>
-    <script src="assets/js/anime.min.js"></script>
+    <script src="assets/js/anime.min.js?v=20260616"></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
 
-    <link rel="stylesheet" href="assets/css/fresh-design.css" />
+    <link rel="stylesheet" href="assets/css/fresh-design.css?v=20260616" />
   </head>
 
   <body>
@@ -67,7 +67,7 @@
         <div class="hero-content">
           <div class="hero-badge" id="heroBadge">
             <span class="badge-dot"></span>
-            Available for hire
+            Who am I?
           </div>
 
           <h1 class="hero-title" id="heroTitle">
@@ -124,123 +124,201 @@
       <div class="container">
         <div class="section-header" data-animate="header">
           <span class="section-label">Portfolio</span>
-          <h2 class="section-title">Featured Projects</h2>
+          <h2 class="section-title">Projects</h2>
           <p class="section-subtitle">Showcase of my best work and technical contributions</p>
         </div>
 
         <!-- Carousel wrapper (active only on mobile via CSS) -->
         <div class="projects-carousel-wrapper">
           <div class="projects-grid" id="projectsGrid">
-          <div class="project-card" data-animate="card">
-            <div class="project-image" style="--card-hue:240">
-              <i data-feather="book-open" class="project-icon"></i>
-              <div class="project-image-glow"></div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Guest Book System</h3>
-              <p class="project-description">
-                Web-based application to record and manage guest activities with
-                real-time tracking and a modern admin dashboard.
-              </p>
-              <div class="project-tech">
-                <span class="tech-badge">Laravel 8</span>
-                <span class="tech-badge">MySQL</span>
-                <span class="tech-badge">jQuery</span>
-              </div>
-              <a href="#" class="project-link">
-                View Project <i data-feather="arrow-up-right" style="width:14px;height:14px;display:inline;"></i>
-              </a>
-            </div>
-          </div>
 
-          <div class="project-card" data-animate="card">
-            <div class="project-image" style="--card-hue:270">
-              <i data-feather="trending-up" class="project-icon"></i>
-              <div class="project-image-glow"></div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Integrated Payroll + KPI</h3>
-              <p class="project-description">
-                Comprehensive payroll management system that calculates employee
-                salaries based on KPI metrics with real-time analytics.
-              </p>
-              <div class="project-tech">
-                <span class="tech-badge">Laravel 11</span>
-                <span class="tech-badge">MySQL</span>
-                <span class="tech-badge">Dashboard</span>
+            <div class="project-card" data-animate="card" data-modal-trigger="guest-book" style="cursor:pointer;">
+              <div class="project-image" style="--card-hue:240">
+                <img class="project-screenshot" src="assets/image/project/guest_book_web.png" alt="Guest Book System screenshot" loading="lazy">
+                <i data-feather="book-open" class="project-icon"></i>
+                <div class="project-image-glow"></div>
               </div>
-              <a href="#" class="project-link">
-                View Project <i data-feather="arrow-up-right" style="width:14px;height:14px;display:inline;"></i>
-              </a>
+              <div class="project-content">
+                <h3 class="project-title">Guest Book System</h3>
+                <p class="project-description">
+                  Web-based application to record and manage guest activities with
+                  real-time tracking and a modern admin dashboard.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-badge">Laravel 8</span>
+                  <span class="tech-badge">MySQL</span>
+                  <span class="tech-badge">jQuery</span>
+                </div>
+                <a href="#" class="project-link" data-modal-trigger="guest-book">
+                  View Gallery <i data-feather="image" style="width:14px;height:14px;display:inline;"></i>
+                </a>
+              </div>
             </div>
-          </div>
 
-          <div class="project-card" data-animate="card">
-            <div class="project-image" style="--card-hue:190">
-              <i data-feather="send" class="project-icon"></i>
-              <div class="project-image-glow"></div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Telegram Referral Bot</h3>
-              <p class="project-description">
-                Telegram bot with unique referral code generation integrated
-                with a points system and real-time management.
-              </p>
-              <div class="project-tech">
-                <span class="tech-badge">Laravel 11</span>
-                <span class="tech-badge">Botman</span>
-                <span class="tech-badge">Telegram API</span>
+            <div class="project-card" data-animate="card" data-modal-trigger="human-resource-system" style="cursor:pointer;">
+              <div class="project-image" style="--card-hue:270">
+                <img class="project-screenshot" src="assets/image/project/human_resource_system_1.png" alt="Human Resource System screenshot" loading="lazy">
+                <i data-feather="users" class="project-icon"></i>
+                <div class="project-image-glow"></div>
               </div>
-              <a href="#" class="project-link">
-                View Project <i data-feather="arrow-up-right" style="width:14px;height:14px;display:inline;"></i>
-              </a>
+              <div class="project-content">
+                <h3 class="project-title">Human Resource System</h3>
+                <p class="project-description">
+                  Comprehensive HR management system covering payroll, KPI tracking,
+                  attendance, and employee data with real-time analytics dashboard.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-badge">Laravel 11</span>
+                  <span class="tech-badge">MySQL</span>
+                  <span class="tech-badge">Dashboard</span>
+                </div>
+                <a href="#" class="project-link" data-modal-trigger="human-resource-system">
+                  View Gallery <i data-feather="image" style="width:14px;height:14px;display:inline;"></i>
+                </a>
+              </div>
             </div>
-          </div>
 
-          <div class="project-card" data-animate="card">
-            <div class="project-image" style="--card-hue:160">
-              <i data-feather="clipboard" class="project-icon"></i>
-              <div class="project-image-glow"></div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">PPVTPP Survey Platform</h3>
-              <p class="project-description">
-                Government web-based survey service platform with responsive
-                and accessible user experience for mass deployment.
-              </p>
-              <div class="project-tech">
-                <span class="tech-badge">HTML</span>
-                <span class="tech-badge">CSS</span>
-                <span class="tech-badge">JavaScript</span>
+            <div class="project-card" data-animate="card" data-modal-trigger="e-commerce" style="cursor:pointer;">
+              <div class="project-image" style="--card-hue:200">
+                <img class="project-screenshot" src="assets/image/project/e_commerce.png" alt="E-Commerce screenshot" loading="lazy">
+                <i data-feather="shopping-cart" class="project-icon"></i>
+                <div class="project-image-glow"></div>
               </div>
-              <a href="https://ppvtpp-survei.logeeka.id/" class="project-link" target="_blank" rel="noopener">
-                View Project <i data-feather="arrow-up-right" style="width:14px;height:14px;display:inline;"></i>
-              </a>
+              <div class="project-content">
+                <h3 class="project-title">Simple E-Commerce</h3>
+                <p class="project-description">
+                  E-commerce platform with product catalog, inventory management,
+                  shopping cart and order tracking built on Laravel stack.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-badge">Laravel</span>
+                  <span class="tech-badge">MySQL</span>
+                  <span class="tech-badge">jQuery</span>
+                </div>
+                <a href="#" class="project-link" data-modal-trigger="e-commerce">
+                  View Gallery <i data-feather="image" style="width:14px;height:14px;display:inline;"></i>
+                </a>
+              </div>
             </div>
-          </div>
 
-          <div class="project-card" data-animate="card">
-            <div class="project-image" style="--card-hue:210">
-              <i data-feather="shopping-cart" class="project-icon"></i>
-              <div class="project-image-glow"></div>
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">Simple E-Commerce</h3>
-              <p class="project-description">
-                E-commerce platform with product catalog, inventory management,
-                shopping cart and order tracking built on Laravel stack.
-              </p>
-              <div class="project-tech">
-                <span class="tech-badge">Laravel</span>
-                <span class="tech-badge">MySQL</span>
-                <span class="tech-badge">jQuery</span>
+            <div class="project-card" data-animate="card" data-modal-trigger="landing-page" style="cursor:pointer;">
+              <div class="project-image" style="--card-hue:210">
+                <img class="project-screenshot" src="assets/image/project/landing-page_1.png" alt="Company Profile screenshot" loading="lazy">
+                <i data-feather="layout" class="project-icon"></i>
+                <div class="project-image-glow"></div>
               </div>
-              <a href="#" class="project-link">
-                View Project <i data-feather="arrow-up-right" style="width:14px;height:14px;display:inline;"></i>
-              </a>
+              <div class="project-content">
+                <h3 class="project-title">Company Profile</h3>
+                <p class="project-description">
+                  Responsive company profile website for local businesses, showcasing
+                  products and services with clean design and smooth animations.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-badge">HTML5</span>
+                  <span class="tech-badge">Tailwind CSS</span>
+                  <span class="tech-badge">Bootstrap</span>
+                  <span class="tech-badge">jQuery</span>
+                </div>
+                <a href="#" class="project-link" data-modal-trigger="landing-page">
+                  View Gallery <i data-feather="image" style="width:14px;height:14px;display:inline;"></i>
+                </a>
+              </div>
             </div>
+
+            <div class="project-card" data-animate="card" data-modal-trigger="loyalty-card" style="cursor:pointer;">
+              <div class="project-image" style="--card-hue:340">
+                <img class="project-screenshot" src="assets/image/project/loyalty_card_system.png" alt="Loyalty Card System screenshot" loading="lazy">
+                <i data-feather="credit-card" class="project-icon"></i>
+                <div class="project-image-glow"></div>
+              </div>
+              <div class="project-content">
+                <h3 class="project-title">Loyalty Card System</h3>
+                <p class="project-description">
+                  Digital loyalty card management system for retail businesses with
+                  point accumulation, reward redemption, and customer tracking.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-badge">Laravel</span>
+                  <span class="tech-badge">MySQL</span>
+                  <span class="tech-badge">jQuery</span>
+                </div>
+                <a href="#" class="project-link" data-modal-trigger="loyalty-card">
+                  View Gallery <i data-feather="image" style="width:14px;height:14px;display:inline;"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="project-card" data-animate="card" data-modal-trigger="requisition-letter" style="cursor:pointer;">
+              <div class="project-image" style="--card-hue:150">
+                <img class="project-screenshot" src="assets/image/project/requisition_letter.png" alt="Requisition Letter screenshot" loading="lazy">
+                <i data-feather="file-text" class="project-icon"></i>
+                <div class="project-image-glow"></div>
+              </div>
+              <div class="project-content">
+                <h3 class="project-title">Requisition Letter System</h3>
+                <p class="project-description">
+                  Internal procurement request management system with multi-level
+                  approval workflow, status tracking, and automated document generation.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-badge">Laravel</span>
+                  <span class="tech-badge">MySQL</span>
+                  <span class="tech-badge">PDF Export</span>
+                </div>
+                <a href="#" class="project-link" data-modal-trigger="requisition-letter">
+                  View Gallery <i data-feather="image" style="width:14px;height:14px;display:inline;"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="project-card" data-animate="card" data-modal-trigger="vacancy-web" style="cursor:pointer;">
+              <div class="project-image" style="--card-hue:30">
+                <img class="project-screenshot" src="assets/image/project/vacancy_web.png" alt="Vacancy Web screenshot" loading="lazy">
+                <i data-feather="briefcase" class="project-icon"></i>
+                <div class="project-image-glow"></div>
+              </div>
+              <div class="project-content">
+                <h3 class="project-title">Vacancy Web</h3>
+                <p class="project-description">
+                  Job vacancy portal enabling companies to post openings and applicants
+                  to submit applications with an admin review dashboard.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-badge">Laravel</span>
+                  <span class="tech-badge">MySQL</span>
+                  <span class="tech-badge">Bootstrap</span>
+                </div>
+                <a href="#" class="project-link" data-modal-trigger="vacancy-web">
+                  View Gallery <i data-feather="image" style="width:14px;height:14px;display:inline;"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="project-card" data-animate="card" data-modal-trigger="wedding-invitation" style="cursor:pointer;">
+              <div class="project-image" style="--card-hue:320">
+                <img class="project-screenshot" src="assets/image/project/wedding_invitation_maker.png" alt="Wedding Invitation Maker screenshot" loading="lazy">
+                <i data-feather="heart" class="project-icon"></i>
+                <div class="project-image-glow"></div>
+              </div>
+              <div class="project-content">
+                <h3 class="project-title">Wedding Invitation Maker</h3>
+                <p class="project-description">
+                  Online wedding invitation builder with customizable templates,
+                  RSVP management, countdown timer, and shareable link.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-badge">HTML5</span>
+                  <span class="tech-badge">CSS3</span>
+                  <span class="tech-badge">JavaScript</span>
+                </div>
+                <a href="#" class="project-link" data-modal-trigger="wedding-invitation">
+                  View Gallery <i data-feather="image" style="width:14px;height:14px;display:inline;"></i>
+                </a>
+              </div>
+            </div>
+
           </div>
-          </div><!-- /.projects-grid -->
+          <!-- /.projects-grid -->
 
           <!-- Carousel controls (visible on mobile only) -->
           <div class="carousel-controls" id="carouselControls" aria-hidden="true">
@@ -558,6 +636,34 @@
       </div>
     </section>
 
+    <!-- Project Gallery Modal -->
+    <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-label="Project Gallery">
+      <div class="project-modal-backdrop" id="modalBackdrop"></div>
+      <div class="project-modal-container">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modalTitle">Project Gallery</h3>
+          <button class="modal-close" id="modalClose" aria-label="Close modal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-carousel">
+          <div class="modal-track" id="modalTrack"></div>
+          <button class="modal-nav modal-nav-prev" id="modalPrev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="modal-nav modal-nav-next" id="modalNext" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <div class="modal-dots" id="modalDots"></div>
+          <span class="modal-counter" id="modalCounter">1 / 7</span>
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
       <div class="container footer-inner">
@@ -577,6 +683,6 @@
       </div>
     </footer>
 
-    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/animations.js?v=20260616"></script>
   </body>
 </html>
